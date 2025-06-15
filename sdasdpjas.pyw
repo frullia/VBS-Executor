@@ -11,14 +11,14 @@ def run_vbs_code():
     vbs_code = input_text.get("1.0", tk.END).strip()
 
     if not vbs_code:
-        return  # Do nothing if empty
+        return
 
     with tempfile.NamedTemporaryFile(delete=False, suffix=".vbs", mode='w', encoding='utf-8') as temp_vbs:
         temp_vbs.write(vbs_code)
         temp_filename = temp_vbs.name
 
     try:
-        # Run the script without capturing output
+        
         subprocess.run(["cscript", "//nologo", temp_filename])
     except Exception:
         pass
